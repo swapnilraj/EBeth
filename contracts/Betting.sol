@@ -1,8 +1,17 @@
 pragma solidity ^0.4.17;
 
 contract Betting {
-  address public creator;
 
+  address public creator;
+  string outcomeOne;
+  string outcomeTwo;
+  string outcomeThree;
+
+  struct Bet {
+      address addr;
+      uint amount;
+  }
+  
   uint public testCounter;  
 
   modifier onlyCreator() {
@@ -10,7 +19,7 @@ contract Betting {
     _ ;
   }
 
-  function Betting() public {
+  function Betting(string outcomeOne, string outcomeTwo, string outcomeThree) public {
     creator = msg.sender;
     testCounter = 0;
   }
