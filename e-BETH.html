@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
+		<script src="./script.js"></script>
+
+	</head>
+	<body style="background-color: #7C7676">
+
+		<div class="col-sm-12" id = "banner" style="height: 10vh; background-color: #424040">
+		  	<div id = "hamburger" class="col-sm-1" style="height: 100%;opacity: .9;cursor: pointer;margin-left: 2.5%">
+		  		<div id = "bar" style = "width: 60%;background-color: #54C2A1;height: 12.5%;margin-top:25%;border-radius:5px " ></div>
+		  		<div id = "bar" style = "width: 60%;background-color: #54C2A1;height: 12.5%;margin-top:8%;border-radius:5px " ></div>
+		  		<div id = "bar" style = "width: 60%;background-color: #54C2A1;height: 12.5%;margin-top:8%;border-radius:5px  " ></div>
+		  		
+		  	</div>
+		</div>
+
+		<div class = "col-sm-10">
+			
+			<div  id ="bettingBox"  style= "height: 60vh; margin-left:11.5vw;margin-top: 8vh;border-radius: 10px;background-color: #636363;width: 75vw">
+				
+				<div id ="liveUpdatesAndCrests" class="col-sm-12" style = "height: 30%;margin-top: 3.5%">
+					<img id = crest1 style = "height: 70%;margin-left: 20vw;float: left" src ="http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+					
+
+
+					<div id = "liveUpdates" style = "width:20%;height: 16vh;float: left;margin-left: 1.5vw">
+						<div style = "height: 25%;width: 100%;font-size: 1.5em;overflow: hidden;vertical-align: middle;text-align: center;color: #EBB446">Vs.</div>
+						<div id ="score" style = "height: 50%;width: 100%;text-align: center;color: #54C2A1;font-size: 3em;overflow: hidden;vertical-align: middle">0-0</div>
+						<div id = "currentMinute" style = "height: 25%;width: 100%;text-align: center;vertical-align: middle;color:#54C2A1;font-size: 1.5em ">0'</div>
+
+
+					</div>
+					<img id = crest2 style = "height: 70%;float: right;margin-right: 20vw" src ="http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c4e1.png"/>
+
+				
+				</div>
+				<div id = "fixtureDetails" class = "col-sm-12"  style="height: 7vh;">
+					<div class = "col-sm-6" style="height: 100%;margin-left: 25%">
+						<p id = "startTime" style = "text-align: center;font-size: 1.35vw;color: #87D2DE">Start Time : 3pm</p>
+						<p id = "date" style = "text-align: center;font-size: 1.35vw;color: #87D2DE">Saturday 15th March</p>
+					</div>
+				
+				</div>
+
+				<p style="float: left;margin-left: 24%;color:  #E1276F;font-size: 1.5em" >0</p>
+				<p style="float: right;margin-right: 24%;color: #89D2DD;font-size: 1.5em">0</p>
+
+				<div id="oddsBar" class = "col-sm-6"  style="margin-left: 25%;height: 1%" >
+					<div id = "teamOneOddsBar" style = "height: 100%;width: 50%;background-color:  #E1276F;float: left"></div>
+					<div id ="teamTwoOddsBar" style = "height: 100%;width: 50%;background-color: #89D2DD;float: left"></div>
+				</div>
+
+				<div class = "col-sm-12"  style="height: 7vh;">
+					<div class = "col-sm-6" style="height: 100%;margin-left: 25%">
+						<p id = "potDetails" style = "margin-top:2.5%;text-align: center;font-size: 2.25em;color: #EBB446">Pot: 0.00 ETH</p>
+						
+					</div>
+				
+				</div>
+
+				<div id = "scrollBar" class = "col-sm-5" style="background-color: #7C7676;margin-left: 30%;height: 3.5vh;border-radius: 15px;margin-top:1.5%;border-style: solid;border-width: .03em;border-color: ##424040;">
+					<div class = "checkBox" id = "checkBox1" style="width:2.4vh;height: 2.4vh;background-color: #8BD2DC;border-radius: 100%;border-style: solid;border-width: .275em;border-color: #57B497;float: left;margin-left: 2%;margin-top: .5vh;cursor:pointer;">
+    				</div>
+				    <div class = "checkBox" id = "checkBox2" style="width:2.4vh;height: 2.4vh;background-color: #7C7676;border-radius: 100%;border-style: solid;border-width: .275em;border-color: #57B497;float: left;margin-left: 5%;margin-top: .5vh;cursor:pointer;">
+				    </div>
+				    <div class = "checkBox" id = "checkBox3" style="width:2.4vh;height: 2.4vh;background-color: #7C7676;border-radius: 100%;border-style: solid;border-width: .275em;border-color: #57B497;float: left;margin-left: 5%;margin-top: .5vh;cursor:pointer;">
+				    </div>
+				    <div class = "checkBox" id = "checkBox4" style="width:2.4vh;height: 2.4vh;background-color: #7C7676;border-radius: 100%;border-style: solid;border-width: .275em;border-color: #57B497;float: left;margin-left: 5%;margin-top: .5vh;cursor:pointer;">
+				    </div>
+				    <div class = "checkBox" id = "checkBox5" style="width:2.4vh;height: 2.4vh;background-color: #7C7676;border-radius: 100%;border-style: solid;border-width: .275em;border-color: #57B497;float: left;margin-left: 5%;margin-top: .5vh;cursor:pointer;">
+				    </div>
+
+
+
+
+				    <div class = "checkBox" id = "checkBox10" style="width:2.4vh;height: 2.4vh;background-color: #7C7676;border-radius: 100%;border-style: solid;border-width: .275em;border-color: #57B497;float: right;margin-right: 2%;margin-top: .5vh;cursor:pointer;">
+				    </div>
+				    <div class = "checkBox" id = "checkBox9" style="width:2.4vh;height: 2.4vh;background-color: #7C7676;border-radius: 100%;border-style: solid;border-width: .275em;border-color: #57B497;float: right;margin-right: 5%;margin-top: .5vh;cursor:pointer;">
+				    </div>
+				    <div class = "checkBox" id = "checkBox8" style="width:2.4vh;height: 2.4vh;background-color: #7C7676;border-radius: 100%;border-style: solid; border-width: .275em;border-color: #57B497;float: right;margin-right: 5%;margin-top: .5vh;cursor:pointer;">
+				    </div>
+
+				    <div class = "checkBox" id = "checkBox7" style="width:2.4vh;height: 2.4vh;background-color: #7C7676;border-radius: 100%;border-style: solid; border-width: .275em;border-color: #57B497;float: right;margin-right: 5%;margin-top: .5vh;cursor:pointer;">
+				    </div>
+				    <div class = "checkBox" id = "checkBox6" style="width:2.4vh;height: 2.4vh;background-color: #7C7676;border-radius: 100%;border-style: solid;border-width: .275em;border-color: #57B497;float: right;margin-right: 5%;margin-top: .5vh;cursor:pointer;">
+				    </div>	
+						
+					
+					
+					
+
+
+			</div>
+			<div id="makeBetButton" class = "col-sm-2"  style="margin-left: 41.5%;height: 10%;border-radius: 20px;background-color: #57B497;margin-top: 3%;vertical-align: middle;text-align: center;cursor: pointer;line-height: 6vh;font-size: 1.75em;color: #dcf2f4   " >
+				Place Bet
+			</div>
+			
+		</div>
+	</div>
+
+
+		<!--side bar-->	
+		<div id = "sidebar" class = "col-sm-2" style = "top: 10vh;height: 90vh;background-color: #424040;position: absolute;left:-20vw;z-index: 100">
+			<div style="width: 100%;height: 9%;background-color: #424040;"></div>
+			<div id = "sidebarSegment1" style="width: 100%;height: 10%;background-color: #424040;vertical-align: middle;text-align: center;line-height: 9vh;color: #57B497;font-size: 2em;cursor: pointer">Results</div>
+			<div id = "sidebarSegment2" style="width: 100%;height: 10%;background-color: #424040;text-align: center;line-height: 9vh;color: #57B497;font-size: 2em;cursor: pointer">My Bets</div>
+			<div id = "sidebarSegment3" style="width: 100%;height: 10%;background-color: #424040;text-align: center;line-height: 9vh;color: #57B497;font-size: 2em;cursor: pointer">Place Bets</div>
+			<div id = "sidebarSegment4" style="width: 100%;height: 10%;background-color: #424040;text-align: center;line-height: 9vh;color: #57B497;font-size: 2em;cursor: pointer;">About Us</div>
+			<div id = "sidebarSegment5" style="width: 100%;height: 10%;background-color: #424040;text-align: center;line-height: 9vh;color: #57B497;font-size: 2em"></div>
+			<div id = "sidebarSegment6" style="width: 100%;height: 10%;background-color: #424040;text-align: center;line-height: 9vh;color: #57B497;font-size: 2em"></div>
+		</div>
+
+		<!--Overlays-->
+		<div id ="overlay" style="height: 90vh;width: 100vw;position: absolute;background-color: white;top: 10vh;opacity: .4;display: none;z-index: 5;">
+			
+		</div>
+		<div id ="darkOverlay" style="height: 100vh;width: 100vw;position: absolute;background-color: black;opacity: .5;display: none;z-index: 5;">
+			
+		</div>
+
+
+		<!--make bet screen-->
+		<div id = "placeBetMenu" class = "col-sm-10" style="position: absolute;top:10vh;z-index: 100;display: none">
+			
+			<div  id ="bettingBox"  style= "height: 62vh; margin-left:11.5vw;margin-top: 8vh;border-radius: 10px;background-color:white;width: 75vw;position: absolute;color: #54C2A1">
+				<div id = "xButton" style="margin-right:5%;float: right;font-size: 3em;margin-top: 2%;cursor: pointer; ">X</div>
+				<div style="height: 10%;width: 96%;margin-left: 2%;margin-top: 2%;font-size: 2.5em">Making a bet</div>
+				<div style="width:94%;height: 1%;margin-top: .5%;margin-left:3%;background-color: #54C2A1"></div>
+				<div style="height: 10%;width: 96%;margin-left: 7%;margin-top: 2%;font-size:1.5em ">1. Select A Team</div>
+				<div>
+					<img id = "homeCrest" src ="http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png" style="height: 11vh;width:11vh;float: left;margin-left: 30%" />
+					<img id = "awayCrest" src ="http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c4e1.png" style="height: 11vh;width:11vh;float: right;margin-right:30%" />
+				</div>
+				<div style="width: 100%;height: 30%">
+					<div class = "betCheckBox" id = "homeCheckBox" style="width:2.4vh;height: 2.4vh;background-color: white;border-radius: 100%;border-style: solid;border-width: .275em;border-color: #57B497;float: left;margin-left: 33.5%;cursor:pointer;margin-top: 2%">
+    				</div>
+				    <div class = "betCheckBox" id = "awayCheckBox" style="width:2.4vh;height: 2.4vh;background-color: white;border-radius: 100%;border-style: solid;border-width: .275em;border-color: #57B497;float: right;margin-right : 33.5%;cursor:pointer;margin-top: 2%">
+				    </div>
+				</div>
+				<div style="height: 10%;width: 96%;margin-left: 7%;margin-top: .5%;font-size:1.5em ">2. How much Ethereum would you like to bet? </div>
+				<div style="height: 9%">
+					<input id = "ethInput" type="text" name="lname" placeholder="0.000" style="height: 5vh;text-align: right;font-size: 1.5em;margin-left: 10%;float: left">
+					<div style="font-size: 1.5em ;margin-left: 1%;float: left;margin-top: .5%">ETH</div>
+				</div>
+				<div id="betButton" class = "col-sm-2"  style="margin-left: 41.5%;height: 10%;border-radius: 20px;background-color: #57B497;margin-top: 3%;vertical-align: middle;text-align: center;cursor: pointer;line-height: 6vh;font-size: 1.75em;color: #dcf2f4   " >
+				Place Bet
+			</div>
+
+
+				
+
+			</div>
+		</div>
+
+
+
+
+
+
+	</body>
+</html>
