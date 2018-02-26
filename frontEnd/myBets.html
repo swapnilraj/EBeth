@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
+		<script src="./script.js"></script>
+
+	</head>
+	<body style="background-color: #7C7676">
+
+		<div class="col-sm-12" id = "banner" style="height: 10vh; background-color: #424040">
+		  	<div id = "hamburger" class="col-sm-1" style="height: 100%;opacity: .9;cursor: pointer;margin-left: 2.5%">
+		  		<div id = "bar" style = "width: 60%;background-color: #54C2A1;height: 12.5%;margin-top:25%;border-radius:5px " ></div>
+		  		<div id = "bar" style = "width: 60%;background-color: #54C2A1;height: 12.5%;margin-top:8%;border-radius:5px " ></div>
+		  		<div id = "bar" style = "width: 60%;background-color: #54C2A1;height: 12.5%;margin-top:8%;border-radius:5px  " ></div>
+		  		
+		  	</div>
+		</div>
+		<br/>
+	<div style = "font-size: 3em;margin-left:2em;padding-top: 2em; color:#8bd2dc">
+		My Bets
+		</div>
+
+		<div style = "height:.5em;width:85em;margin:0 auto;background-color: #8bd2dc;border-radius: 4px;margin-top: .5em ;color">
+		</div>
+
+
+		<div style = "height: 44em;margin:0 auto; width:76em;background-color: white;margin-top:1em;border-radius: 40px;color:#424040;margin-top:3em ">
+			
+			<div id = "heading" style="height: 10%;width: 100%">
+				<div id = "resTitle" style="margin: 0 auto;width: 7em;font-size: 2em;vertical-align: center;padding-top:.3em ">My History</div>
+				
+			</div>
+			<div style="height:.25em;width: 97.5%;margin:0 auto;background-color: #8dd2db;border-radius: 30px"></div>
+			<div id = "resGame1" style="margin-top:1em;height:20%;border-bottom: .2px solid #424040;width: 45%;float: left;margin-left: 5%">
+				<img  id = "res1HomeCrest" style = "float:left;height:2em;width: 2em ;margin-left: 4em;margin-top: 1em" src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res1HomeName" style="float: left;margin-top: 1em;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div style="float: right;margin-top: 1em;font-size: 1.25em;margin-right: 30%;font-weight:bold;color:#424040">1</div>
+				<br/><br/><br/>
+				<img id = "res1AwayCrest"  style = "float:left;height:2em;width: 2em;margin-left: 4em; " src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res1AwayName" style="float: left;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div style="float: right;font-size: 1.25em;margin-right: 30%;font-weight:bold;color:#424040">2</div>
+			</div>
+
+			<div id = "resGame2" style="margin-top:1em;height:20%;border-bottom: .2px solid #424040;width: 45%;float: right;border-left:.2px solid #424040;margin-right:5%;background-color: #bfffdb">
+				<img  id = "res2HomeCrest" style = "float:left;height:2em;width: 2em ;margin-left: 4em;margin-top: 1em" src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res2HomeName" style="float: left;margin-top: 1em;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div id = "claim" style="color:white;float: right;height:3em;width: 10px;background-color: #21bef9;width: 20%;margin-top: 6%;margin-right: 5%;border-radius: 20px;cursor: pointer;vertical-align: center;text-align: center;border: .2em solid #2082d6;line-height: 30px">Claim</div>
+				<div id = "res2HomeScore" style="float: right;margin-top: 1em;font-size: 1.25em;margin-right: 5%;font-weight:bold;color:#424040">3</div>
+
+				<br/><br/><br/>
+				<img  id = "res2AwayCrest" style = "float:left;height:2em;width: 2em;margin-left: 4em; " src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res2AwayName" style="float: left;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div style="float: right;font-size: 1.25em;margin-right: 30%;font-weight:bold;color:#424040">3</div>
+			</div>
+
+
+			<div id = "resGame3" style="background-color: #ed9cbb;height:20%;border-bottom: .2px solid #424040;width: 45%;float: left;margin-left: 5%">
+				<img  id = "res3HomeCrest" style = "float:left;height:2em;width: 2em ;margin-left: 4em;margin-top: 1em" src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res3HomeName"  style="float: left;margin-top: 1em;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div style="float: right;margin-top: 1em;font-size: 1.25em;margin-right: 30%;font-weight:bold;color:#424040">0</div>
+				<br/><br/><br/>
+				<img  id = "res3AwayCrest" style = "float:left;height:2em;width: 2em;margin-left: 4em; " src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res3AwayName"  style="float: left;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div style="float: right;font-size: 1.25em;margin-right: 30%;font-weight:bold;color:#424040">0</div>
+			</div>
+			
+			<div id = "resGame4" style="background-color: #ed9cbb;height:20%;border-bottom: .2px solid #424040;width: 45%;float: right;border-left:.2px solid #424040;margin-right:5%">
+				<img  id = "res4HomeCrest" style = "float:left;height:2em;width: 2em ;margin-left: 4em;margin-top: 1em" src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res4HomeName"  style="float: left;margin-top: 1em;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div style="float: right;margin-top: 1em;font-size: 1.25em;margin-right: 30%;font-weight:bold;color:#424040">5</div>
+				<br/><br/><br/>
+				<img id = "res4AwayCrest" style = "float:left;height:2em;width: 2em;margin-left: 4em; " src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res4AwayName"  style="float: left;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div style="float: right;font-size: 1.25em;margin-right: 30%;font-weight:bold;color:#424040">4</div>
+			</div>
+
+				<div id = "resGame5" style="background-color: #ed9cbb;height:20%;border-bottom: .2px solid #424040;width: 45%;float: left;margin-left: 5%">
+				<img id = "res5HomeCrest" style = "float:left;height:2em;width: 2em ;margin-left: 4em;margin-top: 1em" src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res5HomeName"  style="float: left;margin-top: 1em;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div style="float: right;margin-top: 1em;font-size: 1.25em;margin-right: 30%;font-weight:bold;color:#424040">0</div>
+				<br/><br/><br/>
+				<img id = "res5AwayCrest" style = "float:left;height:2em;width: 2em;margin-left: 4em; " src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res5AwayName"  style="float: left;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div style="float: right;font-size: 1.25em;margin-right: 30%;font-weight:bold;color:#424040">1</div>
+			</div>
+			
+			<div id = "resGame6" style="background-color: #ed9cbb;height:20%;border-bottom: .2px solid #424040;width: 45%;float: right;border-left:.2px solid #424040;margin-right:5%">
+				<img id = "res6HomeCrest" style = "float:left;height:2em;width: 2em ;margin-left: 4em;margin-top: 1em" src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res6HomeName"  style="float: left;margin-top: 1em;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div style="float: right;margin-top: 1em;font-size: 1.25em;margin-right: 30%;font-weight:bold;color:#424040">2</div>
+				<br/><br/><br/>
+				<img id = "res6AwayCrest" style = "float:left;height:2em;width: 2em;margin-left: 4em; " src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res6AwayName"  style="float: left;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div style="float: right;font-size: 1.25em;margin-right: 30%;font-weight:bold;color:#424040">2</div>
+			</div>
+
+				<div  id = "resGame7" style="height:20%;;width: 45%;float: left;margin-left: 5%;background-color: #bfffdb">
+				<img  id = "res7HomeCrest" style = "float:left;height:2em;width: 2em ;margin-left: 4em;margin-top: 1em" src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res7HomeName"  style="float: left;margin-top: 1em;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div style="float: right;margin-top: 1em;font-size: 1.25em;margin-right: 30%;font-weight:bold;color:#424040">2</div>
+				<br/><br/><br/>
+				<img  id = "res7AwayCrest" style = "float:left;height:2em;width: 2em;margin-left: 4em; " src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res7AwayName"  style="float: left;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div style="float: right;font-size: 1.25em;margin-right: 30%;font-weight:bold;color:#424040">0</div>
+			</div>
+			
+			<div id = "resGame8" style="height:20%;width: 45%;float: right;border-left:.2px solid #424040;margin-right:5%;background-color:#bfffdb ">
+				<img id = "res8HomeCrest" style = "float:left;height:2em;width: 2em ;margin-left: 4em;margin-top: 1em" src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res8HomeName"  style="float: left;margin-top: 1em;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div style="float: right;margin-top: 1em;font-size: 1.25em;margin-right: 30%;font-weight:bold;color:#424040">1</div>
+				<br/><br/><br/>
+				<img  id = "res8AwayCrest" style = "float:left;height:2em;width: 2em;margin-left: 4em; " src  = "http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png"/>
+				<div id = "res8AwayName"  style="float: left;font-size: 1.25em;margin-left: 1em ">Manchester United</div>
+				<div style="float: right;font-size: 1.25em;margin-right: 30%;font-weight:bold;color:#424040">3</div>
+			</div>
+			
+		</div>
+
+
+		</div>
+
+
+		<!--side bar-->	
+		<div id = "sidebar" class = "col-sm-2" style = "top: 10vh;height: 90vh;background-color: #424040;position: absolute;left:-20vw;z-index: 100">
+			<div style="width: 100%;height: 9%;background-color: #424040;"></div>
+			<div id = "sidebarSegment1" class = "resultsLink" style="width: 100%;height: 10%;background-color: #424040;vertical-align: middle;text-align: center;line-height: 9vh;color: #57B497;font-size: 2em;cursor: pointer">Results</div>
+			<div id = "sidebarSegment2" class = "myBetsLink" style="width: 100%;height: 10%;background-color: #424040;text-align: center;line-height: 9vh;color: #57B497;font-size: 2em;cursor: pointer">My Bets</div>
+			<div id = "sidebarSegment3" class = "homeLink" style="width: 100%;height: 10%;background-color: #424040;text-align: center;line-height: 9vh;color: #57B497;font-size: 2em;cursor: pointer">Place Bets</div>
+			<div id = "sidebarSegment4" class = "aboutLink" style="width: 100%;height: 10%;background-color: #424040;text-align: center;line-height: 9vh;color: #57B497;font-size: 2em;cursor: pointer;">About Us</div>
+			<div id = "sidebarSegment5" style="width: 100%;height: 10%;background-color: #424040;text-align: center;line-height: 9vh;color: #57B497;font-size: 2em"></div>
+			<div id = "sidebarSegment6" style="width: 100%;height: 10%;background-color: #424040;text-align: center;line-height: 9vh;color: #57B497;font-size: 2em"></div>
+		</div>
+
+
+
+		<!--Overlays-->
+		<div id ="overlay" style="height: 90vh;width: 100vw;position: absolute;background-color: white;top: 10vh;opacity: .4;display: none;z-index: 5;">
+			
+		</div>
+		<div id ="darkOverlay" style="height: 100vh;width: 100vw;position: absolute;background-color: black;opacity: .5;display: none;z-index: 5;">
+			
+		</div>
+
+
+
+
+
+
+	</body>
+</html>
