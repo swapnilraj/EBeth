@@ -9,7 +9,7 @@ var fixtures =
 					"homeCrest":"http://pngimg.com/uploads/manchester_united/manchester_united_PNG26.png",
 					"awayTeam": "Chelsea",
 					"awayCrest":"http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c4e1.png",
-					"date":"Saturday 25th February",
+					"date":"Sunday 25th February",
 					"kickOffTime":"14:05",
 					"score":"0-0",
 					"potValue":"",
@@ -73,7 +73,7 @@ var fixtures =
 	"game5" : {
 					"homeTeam":"West Brom",
 					"homeCrest":"http://uefa.wdfiles.com/local--files/england:west-bromwich-albion-fc/west-bromwich-albion-fc.png",
-					"awayTeam": "Burnley",
+					"awayTeam": "Huddersfield United",
 					"awayCrest":"http://www.asianimage.co.uk/resources/images/5957402/",
 					"date":"Friday 24th February",
 					"kickOffTime":"15:00",
@@ -147,15 +147,44 @@ var fixtures =
 var currentDisplayedMatch = "";
 var selectedTeam ="";
 var menuOut = false;
-
+var currentMatchDay = 25;
 
 
 
 $(document).ready(function(){
 	
-
+loadResults(1);
 	//click functions
 
+	$("#claim").click(function(){
+		$(this).css({"display":"none"})
+		$("#res2HomeScore").css({"margin-right":"30%"})
+		swal("Congratulations!", "0.1 ETH has been added to your wallet!", "success")
+
+	})
+
+	$("#nextArrow").click(function(){
+		loadResults(1);
+		currentMatchDay = currentMatchDay-1;
+		$("#resTitle").text("Match Day "+currentMatchDay)
+		$("#backArrow").css({"display":"inherit"})
+		if(currentMatchDay==0)
+		{
+			$(this).css({"display":"none"})
+		}
+
+	})
+
+	$("#backArrow").click(function(){
+		loadResults(1);
+		currentMatchDay = currentMatchDay+1;
+		$("#resTitle").text("Match Day "+currentMatchDay)
+		$("#nextArrow").css({"display":"inherit"})
+		if(currentMatchDay==25)
+		{
+			$(this).css({"display":"none"})
+		}
+	})
     $("#hamburger").click(function()
 	    {
     if(menuOut == false)
@@ -209,6 +238,21 @@ $(document).ready(function(){
 
 	$("#betButton").click(function(){
 		makeBet();
+	})
+
+	$(".aboutLink").click(function(){
+		window.location.href = './about.html';
+	})
+
+	$(".homeLink").click(function(){
+		console.log("Should be moving")
+		window.location.href = './e-BETH.html';
+	})
+	$(".resultsLink").click(function(){
+		window.location.href = './results.html';
+	})
+	$(".myBetsLink").click(function(){
+		window.location.href = './myBets.html';
 	})
 
 	//Hover functions - put on style sheet
@@ -318,6 +362,41 @@ function makeBet()
 		
 		 swal("Done!", "You have placed a bet for " +selectedTeam+" !", "success")
 		 closeBettingScreen();
+	}
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+function loadResults(start)
+{
+	for( i = start;i<start+9;i++)
+	{
+		var num = getRandomInt(10);
+		while(num == i)
+		{
+			var num = getRandomInt(10);
+		}
+		var homeCrestName  = "#res"+i+"HomeCrest"
+		var awayCrestName  = "#res"+i+"AwayCrest"
+		var homeTeamName = "#res"+i+"HomeName"
+		var awayTeamName = "#res"+i+"AwayName"
+		var gameHome = "game"+(i-1);
+		var gameAway = "game" + num;
+
+
+
+		
+
+
+		$(homeTeamName).text(fixtures[gameHome].homeTeam);
+		$(awayTeamName).text(fixtures[gameAway].awayTeam);
+		$(homeCrestName).attr("src",fixtures[gameHome].homeCrest)
+		$(awayCrestName).attr("src",fixtures[gameAway].awayCrest)
+		
+
+
 	}
 }
 
