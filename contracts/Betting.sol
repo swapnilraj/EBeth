@@ -7,10 +7,12 @@ contract Betting {
     string public outcomeOne;
     string public outcomeTwo;
     string public outcomeThree;
+    uint256 public kickOffTime;
     
     uint256[] public totalPools;
     uint256 public winningIndex;
-    bool eventStart;
+    
+    uint public state;
 
     struct Bet {
         uint outcomeIndex;
@@ -25,25 +27,26 @@ contract Betting {
         _ ;
     }
 
-    function Betting(string _outcomeOne, string _outcomeTwo, string _outcomeThree) public {
+    function Betting(string _outcomeOne, string _outcomeTwo, string _outcomeThree, uint256 _kickOffTime) public {
         creator = msg.sender;
         outcomeOne = _outcomeOne;
         outcomeTwo = _outcomeTwo;
         outcomeThree = _outcomeThree;
+        kickOffTime = _kickOffTime;
         totalPools = new uint256[](4);
         winningIndex = 5;
-        eventStart = false;
+        state = 0;
     }
     
     function placeBet(uint _outcomeIndex) public payable {
-        require(!eventStart);
+        require(state==0);
         bets[msg.sender] = Bet({outcomeIndex: _outcomeIndex, amount: msg.value, paid: false});
         totalPools[_outcomeIndex] += msg.value;
         totalPools[3] += msg.value;
     }
     
     function changeBet(uint _outcomeIndex) public {
-        require(!eventStart);
+        require(state==0);
         Bet storage previousBet = bets[msg.sender];  
         totalPools[previousBet.outcomeIndex] -= previousBet.amount;
         totalPools[_outcomeIndex] += previousBet.amount;
@@ -52,12 +55,13 @@ contract Betting {
     }
 
     function eventStarted() public onlyCreator {
-        eventStart = true;
+        state = 1;
     }
 
     function eventOver(uint _outcomeIndex) public onlyCreator {
         //todo Use Oraclize to get result from API
         winningIndex = _outcomeIndex;
+        state = 2;
     }
 
     function claimWinnings() public {
