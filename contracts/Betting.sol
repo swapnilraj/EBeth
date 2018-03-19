@@ -21,18 +21,23 @@ contract Betting is usingOraclize {
     uint public teamTwoScore;
 
     struct Bet {
+        address addr;
         uint outcomeIndex;
         uint256 amount;
         uint256 winnings;
         bool paid;
     }
     
-    mapping(address => Bet) public bets;
+    mapping(address => uint) public bettingIndices;
   
     modifier onlyCreator() {
         if (msg.sender == creator) 
         _ ;
     }
+
+    Bet[] public bets;
+
+    uint private bettingIndex;
 
     function Betting(string _outcomeOne, string _outcomeTwo, string _outcomeThree, uint256 _kickOffTime, string _jsonIndex) public {
         creator = msg.sender;
@@ -43,23 +48,25 @@ contract Betting is usingOraclize {
         jsonIndex = _jsonIndex;
         totalPools = new uint256[](4);
         winningIndex = 5;
+        bettingIndex = 1;
         state = 0;
     }
     
     function placeBet(uint _outcomeIndex) public payable {
         require(state==0);
-        bets[msg.sender] = Bet({outcomeIndex: _outcomeIndex, amount: msg.value, paid: false, winnings: 0});
+        bettingIndices[msg.sender] = bettingIndex++;
+        bets[bettingIndices[msg.sender]] = Bet({addr: msg.sender, outcomeIndex: _outcomeIndex, amount: msg.value, paid: false, winnings: 0});
         totalPools[_outcomeIndex] += msg.value;
         totalPools[3] += msg.value;
     }
     
     function changeBet(uint _outcomeIndex) public {
-        require(state==0);
-        Bet storage previousBet = bets[msg.sender];  
+        require(state==0 && bettingIndices[msg.sender]!=0);
+        Bet storage previousBet = bets[bettingIndices[msg.sender]];  
         totalPools[previousBet.outcomeIndex] -= previousBet.amount;
         totalPools[_outcomeIndex] += previousBet.amount;
         previousBet.outcomeIndex = _outcomeIndex;
-        bets[msg.sender] = previousBet;
+        bets[bettingIndices[msg.sender]] = previousBet;
     }
 
     function eventStarted() public onlyCreator {
@@ -82,6 +89,7 @@ contract Betting is usingOraclize {
             }else{
                 winningIndex = 1;
             }
+            sendWinnings();
         }
     }
 
@@ -98,14 +106,17 @@ contract Betting is usingOraclize {
         oraclize_query("URL",   strConcat("json(http://fplalerts.com/api/fpl_lhs_17.php).scores.",jsonIndex,".a_sc"));
     }
 
-    function claimWinnings() public {
-        Bet storage placedBet = bets[msg.sender];
-        require( placedBet.outcomeIndex == winningIndex);
-        placedBet.winnings = placedBet.amount+((((totalPools[3]-totalPools[winningIndex])*(placedBet.amount/totalPools[winningIndex]))*(100-1))/100);
-        require( placedBet.paid == false);
-        placedBet.paid = true;
-        bets[msg.sender] = placedBet;
-        msg.sender.transfer(placedBet.winnings);
+    function sendWinnings() private {
+        require(state ==3);
+        for(uint i = 1; i<bettingIndex;i++){
+            Bet storage placedBet = bets[i];
+            if((placedBet.outcomeIndex == winningIndex) && (placedBet.paid == false)){
+                placedBet.winnings = placedBet.amount+((((totalPools[3]-totalPools[winningIndex])*(placedBet.amount/totalPools[winningIndex]))*(100-5))/100);
+                placedBet.paid = true;
+                bets[i] = placedBet;
+                placedBet.addr.transfer(placedBet.winnings);
+            }
+        }
     }
 
 }
