@@ -2,24 +2,17 @@ pragma solidity ^0.4.17;
 
 import "../installed_contracts/oraclize-api/contracts/usingOraclize.sol";
 
-contract Betting is usingOraclize {
-    
-    address public creator;
-    
-    string public outcomeOne;
-    string public outcomeTwo;
-    string public outcomeThree;
-    uint256 public kickOffTime;
-    
-    uint256[] public totalPools;
-    uint256 public winningIndex;
-    
-    uint public state;
+contract BetManager {
+    address[] public betEvents;
+    uint public length;
+    function addEvent(address eventAddr) public {
+        betEvents.push(eventAddr);
+        length++;
+    }
+}
 
-    string public jsonIndex;
-    uint public teamOneScore;
-    uint public teamTwoScore;
-
+contract Betting is usingOraclize, BetManager {
+    
     struct Bet {
         address addr;
         uint outcomeIndex;
@@ -27,33 +20,51 @@ contract Betting is usingOraclize {
         uint256 winnings;
         bool paid;
     }
-    
-    mapping(address => uint) public bettingIndices;
-  
+
     modifier onlyCreator() {
         if (msg.sender == creator) 
-        _ ;
+        _;
     }
 
-    Bet[] public bets;
-
+    address public creator;
+    
+    string public outcomeOne;
+    string public outcomeTwo;
+    string public outcomeThree;
+    string public jsonIndex;
+    string public fid;
+    
+    uint public state;
+    uint public teamOneScore;
+    uint public teamTwoScore;
+    uint public winningIndex;
     uint private bettingIndex;
 
-    function Betting(string _outcomeOne, string _outcomeTwo, string _outcomeThree, uint256 _kickOffTime, string _jsonIndex) public {
+    uint256 public kickOffTime;
+    uint256[] public totalPools;
+    
+    mapping(address => uint) public bettingIndices;
+
+    Bet[] public bets;
+    
+    function Betting(string _outcomeOne, string _outcomeTwo, string _outcomeThree, uint256 _kickOffTime, string _jsonIndex, string _fid, address managerAddress) public {
         creator = msg.sender;
         outcomeOne = _outcomeOne;
         outcomeTwo = _outcomeTwo;
         outcomeThree = _outcomeThree;
         kickOffTime = _kickOffTime;
         jsonIndex = _jsonIndex;
+        fid = _fid;
         totalPools = new uint256[](4);
         winningIndex = 5;
         bettingIndex = 1;
         state = 0;
+        BetManager betManager = BetManager(managerAddress);
+        betManager.addEvent(this);
     }
     
     function placeBet(uint _outcomeIndex) public payable {
-        require(state==0);
+        require(state == 0);
         bettingIndices[msg.sender] = bettingIndex++;
         bets[bettingIndices[msg.sender]] = Bet({addr: msg.sender, outcomeIndex: _outcomeIndex, amount: msg.value, paid: false, winnings: 0});
         totalPools[_outcomeIndex] += msg.value;
@@ -61,7 +72,7 @@ contract Betting is usingOraclize {
     }
     
     function changeBet(uint _outcomeIndex) public {
-        require(state==0 && bettingIndices[msg.sender]!=0);
+        require(state == 0 && bettingIndices[msg.sender] != 0);
         Bet storage previousBet = bets[bettingIndices[msg.sender]];  
         totalPools[previousBet.outcomeIndex] -= previousBet.amount;
         totalPools[_outcomeIndex] += previousBet.amount;
@@ -107,7 +118,7 @@ contract Betting is usingOraclize {
     }
 
     function sendWinnings() private {
-        require(state ==3);
+        require(state == 3);
         for(uint i = 1; i<bettingIndex;i++){
             Bet storage placedBet = bets[i];
             if((placedBet.outcomeIndex == winningIndex) && (placedBet.paid == false)){
