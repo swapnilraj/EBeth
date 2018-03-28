@@ -44,8 +44,7 @@ contract Betting is usingOraclize, BetManager {
     uint256[] public totalPools;
     
     mapping(address => uint) public bettingIndices;
-
-    Bet[] public bets;
+    mapping(uint => Bet) public bets;
     
     function Betting(string _outcomeOne, string _outcomeTwo, string _outcomeThree, uint256 _kickOffTime, string _jsonIndex, string _fid, address managerAddress) public {
         creator = msg.sender;
@@ -65,8 +64,9 @@ contract Betting is usingOraclize, BetManager {
     
     function placeBet(uint _outcomeIndex) public payable {
         require(state == 0);
-        bettingIndices[msg.sender] = bettingIndex++;
-        bets[bettingIndices[msg.sender]] = Bet({addr: msg.sender, outcomeIndex: _outcomeIndex, amount: msg.value, paid: false, winnings: 0});
+        uint index = bettingIndex++;
+        bettingIndices[msg.sender] = index;
+        bets[index] = Bet({addr: msg.sender, outcomeIndex: _outcomeIndex, amount: msg.value, paid: false, winnings: 0});
         totalPools[_outcomeIndex] += msg.value;
         totalPools[3] += msg.value;
     }
