@@ -1,5 +1,12 @@
 # EBeth
 
+## Other EBeth Repos
+* [Daemon](https://github.com/swapnilraj/EBeth-daemon)
+
+* [Front End](https://github.com/swapnilraj/EBeth-frontend)
+
+# EBeth Contracts
+
 Uses truffle to compile smart contracts and to migrate `BetManager.sol` to the network.
 
 ## Pre-requisites:
